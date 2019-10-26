@@ -1,3 +1,6 @@
+#include <Adafruit_NeoPixel.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_NeoMatrix.h>
 /*
   AnalogReadSerial
 
@@ -10,9 +13,9 @@
   http://www.arduino.cc/en/Tutorial/AnalogReadSerial
 */
 
+
 //Globals and initializations
 String S1, S2, S3, string;
-int Led1, Led2, Led3, NeoPIN;
 
  Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(8, 8, 11,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
@@ -29,9 +32,7 @@ void setup() {
   S2 = String("Band2 ");
   S3 = String("Band3 ");
   string = String();
-  Led1 = 10;
-  Led2 = 11;
-  Led3 = 12;
+
 
   matrix.begin();
   matrix.setTextWrap(false);
@@ -39,6 +40,9 @@ void setup() {
   matrix.setTextColor(colors[0]);
 
 }
+int x    = matrix.width();
+int pass = 0;
+
 // the loop routine runs over and over again forever:
 void loop() {
   // read the input on analog pin 0:
@@ -59,14 +63,25 @@ int sensorValue3 = analogRead(A2);
  
  // Check if voltage is greater than 0 and print to Led1
 if (sensorValue1 > 0){
-  
-}
-// Check if voltage is greater than 0 and print to Led2
-if (sensorValue1 > 0){
-  
+loop1();
 }
 // Check if voltage is greater than 0 and print to Led3
-if (sensorValue1 > 0){
-  
+if (sensorValue2 > 0){
+loop1();
 }
+if (sensorValue3 > 0){
+loop1();
+}
+}
+  void loop1() {
+  matrix.fillScreen(0);
+  matrix.setCursor(x, 0);
+  matrix.print(F("Howdy"));
+  if(--x < -36) {
+    x = matrix.width();
+    if(++pass >= 3) pass = 0;
+    matrix.setTextColor(colors[pass]);
+  }
+  matrix.show();
+  delay(100);
 }
