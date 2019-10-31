@@ -1,0 +1,8 @@
+List of items seen in the video:
+1. The 1st shot shows the ADC values being displayed on the serial monitor in the Arduino IDE.
+These values are coming from the outputs of the three bandpass filters.
+2. The next item seen is the bandpass filter circuit. The LEDs light up when the freuency band goes through/
+The closer to the center frequency, the brighter the LED gets.
+3. The potentiometers change the feedback resistance to the amplifier that goes to the speaker.
+4. The oscilloscope is displaying the signal that would go to the NeoPixel matrix. This particular
+signal would say "Howdy!" across the LED matrix.
