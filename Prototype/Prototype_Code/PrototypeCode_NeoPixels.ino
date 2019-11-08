@@ -27,7 +27,7 @@ void loop() {
   Serial.println(pot1);
   
   //Add red LEDS. stage 1
-  if (pot1 > 0 && pot1 < 80)
+  if (pot1 > 0 && pot1 < 255)
   { 
     for (int i = 0; i < 2; i++)
     {
@@ -40,7 +40,7 @@ void loop() {
   }
   
   // Add green LEDS. stage 2
-  if (pot1 > 80 && pot1 < 110)
+  if (pot1 > 255 && pot1 < 511)
   {
     for (int i = 0; i < 2; i++)
     {
@@ -53,7 +53,7 @@ void loop() {
   }
   
   // Add blue LEDS. stage 3
-  else if (pot1 > 110 && pot1 < 140)
+  else if (pot1 > 511 && pot1 < 767)
   {
     for (int i = 0; i < 2; i++)
     {
@@ -66,7 +66,7 @@ void loop() {
   }
   
   //Add white LEDS. stage 4
-  else if (pot1 > 140 && pot1 < 1023)
+  else if (pot1 > 767 && pot1 < 1023)
   {
     for (int i = 0; i < 2; i++)
     {
