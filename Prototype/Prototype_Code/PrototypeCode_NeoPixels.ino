@@ -3,14 +3,28 @@
 // Pin Assignments
 #define NumLEDS 8
 #define DataPin 7
-#define pot1Pin 2
+// Pots
+#define pot1Pin 1
+#define pot2Pin 2
+#define pot3Pin 3
+#define pot4Pin 4
+#define pot5Pin 5
+#define pot6Pin 6
+#define pot7Pin 7
+#define pot8Pin 8
+
 
 // Color Assignments
 #define C0 Black
 #define C1 Red
 #define C2 Green
 #define C3 Blue
-#define C4 White
+#define C4 Yellow
+#define C5 Purple
+#define C6 Orange
+#define C7 Aqua
+#define C8 White
+
 
 // Array Assignments
 CRGB leds[NumLEDS];
@@ -22,6 +36,13 @@ void setup() {
 
 void loop() { 
   int pot1 = analogRead(pot1Pin);
+  int pot2 = analogRead(pot2Pin);
+  int pot3 = analogRead(pot3Pin);
+  int pot4 = analogRead(pot4Pin);
+  int pot5 = analogRead(pot5Pin);
+  int pot6 = analogRead(pot6Pin);
+  int pot7 = analogRead(pot7Pin);
+  int pot8 = analogRead(pot8Pin);
   
   // Monitor the value of potentiometer 1
   Serial.println(pot1);
