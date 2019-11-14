@@ -21,9 +21,9 @@
 #define C3 Blue
 #define C4 Yellow
 #define C5 Purple
-#define C6 Orange
+#define C6 White
 #define C7 Aqua
-#define C8 White
+//#define C8 // pick new color White
 
 
 // Array Assignments
@@ -44,9 +44,11 @@ void loop() {
   int pot7 = analogRead(pot7Pin);
   int pot8 = analogRead(pot8Pin);
   
-  // Monitor the value of potentiometer 1
-  Serial.println(pot4);
-
+  // Monitor the value of all potentiometers
+ /* 
+  Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
+  Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
+*/
   int i;
 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 /// LEDS 1 ///
   //Add red LEDS. stage 1
