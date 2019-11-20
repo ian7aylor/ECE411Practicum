@@ -1,3 +1,5 @@
+//This program will route sound to NEOPIXELS
+
 #include <FastLED.h>
 
 // Pin Assignments
