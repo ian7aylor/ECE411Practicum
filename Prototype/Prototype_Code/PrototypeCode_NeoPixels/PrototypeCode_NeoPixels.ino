@@ -3,7 +3,7 @@
 #include <FastLED.h>
 
 // Pin Assignments
-#define NumLEDS 8
+#define NumLEDS 64
 #define DataPin 7
 
 // Pots
@@ -52,8 +52,8 @@ void loop()
 
     // Monitor the value of all potentiometers
     char printer[99];	
-    sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d  Value8: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7, pot8);
-    Serial.println(printer);
+    //sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d  Value8: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7, pot8);
+    //Serial.println(printer);
 
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
@@ -123,7 +123,7 @@ void setLEDcolor(int pixelNum, int pot)
     }
 
     // Volume stage 2
-    if (pot > 255 && pot < 511)
+    if (pot > 255 && pot < 381)
     {
         switch (pixelNum)
         {
@@ -160,12 +160,12 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row2] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(100);
+        FastLED.setBrightness(63);
         FastLED.show();
     }
 
     // Volume stage 3
-    else if (pot > 511 && pot < 767)
+    else if (pot > 381 && pot < 508)
     {
         switch (pixelNum)
         {
@@ -210,12 +210,12 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row3] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(170);
+        FastLED.setBrightness(63);
         FastLED.show();
     }
 
     // Volume stage 4
-    else if (pot > 767 && pot < 1024)
+    else if (pot > 508 && pot < 635)
     {
         switch (pixelNum)
         {
@@ -268,10 +268,324 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row4] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(255);
+        FastLED.setBrightness(63);
+        FastLED.show();
+    }
+
+
+    // Volume stage 5
+    else if (pot > 635 && pot < 762)
+    {
+        switch (pixelNum)
+        {
+            case 1:
+                leds[row1] = CRGB::C1;
+                leds[row2] = CRGB::C1;
+                leds[row3] = CRGB::C1;
+                leds[row4] = CRGB::C1;
+                leds[row5] = CRGB::C1;
+                break;      
+            case 2:
+                leds[row1] = CRGB::C2;
+                leds[row2] = CRGB::C2;
+                leds[row3] = CRGB::C2;
+                leds[row4] = CRGB::C2;
+                leds[row5] = CRGB::C2;
+                break; 
+            case 3:
+                leds[row1] = CRGB::C3;
+                leds[row2] = CRGB::C3;
+                leds[row3] = CRGB::C3;
+                leds[row4] = CRGB::C3;
+                leds[row5] = CRGB::C3;
+                break;
+            case 4:
+                leds[row1] = CRGB::C4;
+                leds[row2] = CRGB::C4;
+                leds[row3] = CRGB::C4;
+                leds[row4] = CRGB::C4;
+                leds[row5] = CRGB::C4;
+                break;
+            case 5:
+                leds[row1] = CRGB::C5;
+                leds[row2] = CRGB::C5;
+                leds[row3] = CRGB::C5;
+                leds[row4] = CRGB::C5;
+                leds[row5] = CRGB::C5;
+                break;
+            case 6:
+                leds[row1] = CRGB::C6;
+                leds[row2] = CRGB::C6;
+                leds[row3] = CRGB::C6;
+                leds[row4] = CRGB::C6;
+                leds[row5] = CRGB::C6;
+                break;
+            case 7:
+                leds[row1] = CRGB::C7;
+                leds[row2] = CRGB::C7;
+                leds[row3] = CRGB::C7;
+                leds[row4] = CRGB::C7;
+                leds[row5] = CRGB::C7;
+                break;
+            case 8:
+                leds[row1] = CRGB::C8;
+                leds[row2] = CRGB::C8;
+                leds[row3] = CRGB::C8;
+                leds[row4] = CRGB::C8;
+                leds[row5] = CRGB::C8;
+                break;
+        }
+        FastLED.setBrightness(63);
+        FastLED.show();
+    }
+
+
+// Volume stage 6
+else if (pot > 762 && pot < 889)
+{
+    switch (pixelNum)
+    {
+        case 1:
+                leds[row1] = CRGB::C1;
+                leds[row2] = CRGB::C1;
+                leds[row3] = CRGB::C1;
+                leds[row4] = CRGB::C1;
+                leds[row5] = CRGB::C1;
+                leds[row6] = CRGB::C1;
+                break;      
+            case 2:
+                leds[row1] = CRGB::C2;
+                leds[row2] = CRGB::C2;
+                leds[row3] = CRGB::C2;
+                leds[row4] = CRGB::C2;
+                leds[row5] = CRGB::C2;
+                leds[row6] = CRGB::C2;
+                break; 
+            case 3:
+                leds[row1] = CRGB::C3;
+                leds[row2] = CRGB::C3;
+                leds[row3] = CRGB::C3;
+                leds[row4] = CRGB::C3;
+                leds[row5] = CRGB::C3;
+                leds[row6] = CRGB::C3;
+                break;
+            case 4:
+                leds[row1] = CRGB::C4;
+                leds[row2] = CRGB::C4;
+                leds[row3] = CRGB::C4;
+                leds[row4] = CRGB::C4;
+                leds[row5] = CRGB::C4;
+                leds[row6] = CRGB::C4;
+                break;
+            case 5:
+                leds[row1] = CRGB::C5;
+                leds[row2] = CRGB::C5;
+                leds[row3] = CRGB::C5;
+                leds[row4] = CRGB::C5;
+                leds[row5] = CRGB::C5;
+                leds[row6] = CRGB::C5;
+                break;
+            case 6:
+                leds[row1] = CRGB::C6;
+                leds[row2] = CRGB::C6;
+                leds[row3] = CRGB::C6;
+                leds[row4] = CRGB::C6;
+                leds[row5] = CRGB::C6;
+                leds[row6] = CRGB::C6;
+                break;
+            case 7:
+                leds[row1] = CRGB::C7;
+                leds[row2] = CRGB::C7;
+                leds[row3] = CRGB::C7;
+                leds[row4] = CRGB::C7;
+                leds[row5] = CRGB::C7;
+                leds[row6] = CRGB::C7;
+                break;
+            case 8:
+                leds[row1] = CRGB::C8;
+                leds[row2] = CRGB::C8;
+                leds[row3] = CRGB::C8;
+                leds[row4] = CRGB::C8;
+                leds[row5] = CRGB::C8;
+                leds[row6] = CRGB::C8;
+                break;
+    }
+    FastLED.setBrightness(63);
+    FastLED.show();
+  }
+    // Volume stage 7
+    else if (pot > 889 && pot < 1000)
+    {
+        switch (pixelNum)
+        {
+            case 1:
+                leds[row1] = CRGB::C1;
+                leds[row2] = CRGB::C1;
+                leds[row3] = CRGB::C1;
+                leds[row4] = CRGB::C1;
+                leds[row5] = CRGB::C1;
+                leds[row6] = CRGB::C1;
+                leds[row7] = CRGB::C1;
+                break;      
+            case 2:
+                leds[row1] = CRGB::C2;
+                leds[row2] = CRGB::C2;
+                leds[row3] = CRGB::C2;
+                leds[row4] = CRGB::C2;
+                leds[row5] = CRGB::C2;
+                leds[row6] = CRGB::C2;
+                leds[row7] = CRGB::C2;
+                break; 
+            case 3:
+                leds[row1] = CRGB::C3;
+                leds[row2] = CRGB::C3;
+                leds[row3] = CRGB::C3;
+                leds[row4] = CRGB::C3;
+                leds[row5] = CRGB::C3;
+                leds[row6] = CRGB::C3;
+                leds[row7] = CRGB::C3;
+                break;
+            case 4:
+                leds[row1] = CRGB::C4;
+                leds[row2] = CRGB::C4;
+                leds[row3] = CRGB::C4;
+                leds[row4] = CRGB::C4;
+                leds[row5] = CRGB::C4;
+                leds[row6] = CRGB::C4;
+                leds[row7] = CRGB::C4;
+                break;
+            case 5:
+                leds[row1] = CRGB::C5;
+                leds[row2] = CRGB::C5;
+                leds[row3] = CRGB::C5;
+                leds[row4] = CRGB::C5;
+                leds[row5] = CRGB::C5;
+                leds[row6] = CRGB::C5;
+                leds[row7] = CRGB::C5;
+                break;
+            case 6:
+                leds[row1] = CRGB::C6;
+                leds[row2] = CRGB::C6;
+                leds[row3] = CRGB::C6;
+                leds[row4] = CRGB::C6;
+                leds[row5] = CRGB::C6;
+                leds[row6] = CRGB::C6;
+                leds[row7] = CRGB::C6;
+                break;
+            case 7:
+                leds[row1] = CRGB::C7;
+                leds[row2] = CRGB::C7;
+                leds[row3] = CRGB::C7;
+                leds[row4] = CRGB::C7;
+                leds[row5] = CRGB::C7;
+                leds[row6] = CRGB::C7;
+                leds[row7] = CRGB::C7;
+                break;
+            case 8:
+                leds[row1] = CRGB::C8;
+                leds[row2] = CRGB::C8;
+                leds[row3] = CRGB::C8;
+                leds[row4] = CRGB::C8;
+                leds[row5] = CRGB::C8;
+                leds[row6] = CRGB::C8;
+                leds[row7] = CRGB::C8;
+                break;
+        }
+        FastLED.setBrightness(63);
+        FastLED.show();
+    }
+
+    // Volume stage 8
+    else if (pot > 1000 && pot < 1024)
+    {
+        switch (pixelNum)
+        {
+            case 1:
+                leds[row1] = CRGB::C1;
+                leds[row2] = CRGB::C1;
+                leds[row3] = CRGB::C1;
+                leds[row4] = CRGB::C1;
+                leds[row5] = CRGB::C1;
+                leds[row6] = CRGB::C1;
+                leds[row7] = CRGB::C1;
+                leds[row8] = CRGB::C1;
+                break;      
+            case 2:
+                leds[row1] = CRGB::C2;
+                leds[row2] = CRGB::C2;
+                leds[row3] = CRGB::C2;
+                leds[row4] = CRGB::C2;
+                leds[row5] = CRGB::C2;
+                leds[row6] = CRGB::C2;
+                leds[row7] = CRGB::C2;
+                leds[row8] = CRGB::C2;
+                break; 
+            case 3:
+                leds[row1] = CRGB::C3;
+                leds[row2] = CRGB::C3;
+                leds[row3] = CRGB::C3;
+                leds[row4] = CRGB::C3;
+                leds[row5] = CRGB::C3;
+                leds[row6] = CRGB::C3;
+                leds[row7] = CRGB::C3;
+                leds[row8] = CRGB::C3;
+                break;
+            case 4:
+                leds[row1] = CRGB::C4;
+                leds[row2] = CRGB::C4;
+                leds[row3] = CRGB::C4;
+                leds[row4] = CRGB::C4;
+                leds[row5] = CRGB::C4;
+                leds[row6] = CRGB::C4;
+                leds[row7] = CRGB::C4;
+                leds[row8] = CRGB::C4;
+                break;
+            case 5:
+                leds[row1] = CRGB::C5;
+                leds[row2] = CRGB::C5;
+                leds[row3] = CRGB::C5;
+                leds[row4] = CRGB::C5;
+                leds[row5] = CRGB::C5;
+                leds[row6] = CRGB::C5;
+                leds[row7] = CRGB::C5;
+                leds[row8] = CRGB::C5;
+                break;
+            case 6:
+                leds[row1] = CRGB::C6;
+                leds[row2] = CRGB::C6;
+                leds[row3] = CRGB::C6;
+                leds[row4] = CRGB::C6;
+                leds[row5] = CRGB::C6;
+                leds[row6] = CRGB::C6;
+                leds[row7] = CRGB::C6;
+                leds[row8] = CRGB::C6;
+                break;
+            case 7:
+                leds[row1] = CRGB::C7;
+                leds[row2] = CRGB::C7;
+                leds[row3] = CRGB::C7;
+                leds[row4] = CRGB::C7;
+                leds[row5] = CRGB::C7;
+                leds[row6] = CRGB::C7;
+                leds[row7] = CRGB::C7;
+                leds[row8] = CRGB::C7;
+                break;
+            case 8:
+                leds[row1] = CRGB::C8;
+                leds[row2] = CRGB::C8;
+                leds[row3] = CRGB::C8;
+                leds[row4] = CRGB::C8;
+                leds[row5] = CRGB::C8;
+                leds[row6] = CRGB::C8;
+                leds[row7] = CRGB::C8;
+                leds[row8] = CRGB::C8;
+                break;
+        }
+        FastLED.setBrightness(63);
         FastLED.show();
     }
 }
+
 
 // Likely to delete cuz its buggin
 void rowMultiplier(int multi)
@@ -280,6 +594,6 @@ void rowMultiplier(int multi)
     {
         String R = "row";
         R.concat(i);
-        leds[R] = CRGB::C1;
+//        leds[R] = CRGB::C1;
     }
 }
