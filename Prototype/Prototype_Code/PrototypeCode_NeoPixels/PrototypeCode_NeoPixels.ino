@@ -31,12 +31,17 @@
 // Array Assignments
 CRGB leds[NumLEDS];
 
-void setup() { 
+
+// Setup for the pixels
+void setup() 
+{ 
 	FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
 	Serial.begin(57600);
 }
 
-void loop() { 
+// This will loop for all of time
+void loop() 
+{
 	int pot1 = analogRead(pot1Pin);
 	int pot2 = analogRead(pot2Pin);
 	int pot3 = analogRead(pot3Pin);
@@ -72,33 +77,43 @@ void loop() {
 
 void setLEDcolor(int pixelNum, int pot)
 {
+    // Set the values for the pixels for each row
+    int row1 = pixelNum-1 + (8 * 0);
+    int row2 = pixelNum-1 + (8 * 1);
+    int row3 = pixelNum-1 + (8 * 2);
+    int row4 = pixelNum-1 + (8 * 3);
+    int row5 = pixelNum-1 + (8 * 4);
+    int row6 = pixelNum-1 + (8 * 5);
+    int row7 = pixelNum-1 + (8 * 6);
+    int row8 = pixelNum-1 + (8 * 7);
+
   if (pot >15 && pot < 255)
 	{
     switch (pixelNum)
    {
       case 1:
-        leds[pixelNum-1] = CRGB::C1;
+        leds[row1] = CRGB::C1;
       break;      
       case 2:
-        leds[pixelNum-1] = CRGB::C2;
+        leds[row1] = CRGB::C2;
       break; 
        case 3:
-        leds[pixelNum-1] = CRGB::C3;
+        leds[row1] = CRGB::C3;
       break;
        case 4:
-        leds[pixelNum-1] = CRGB::C4;
+        leds[row1] = CRGB::C4;
       break;
        case 5:
-        leds[pixelNum-1] = CRGB::C5;
+        leds[row1] = CRGB::C5;
       break;
        case 6:
-        leds[pixelNum-1] = CRGB::C6;
+        leds[row1] = CRGB::C6;
       break;
       case 7:
-        leds[pixelNum-1] = CRGB::C7;
+        leds[row1] = CRGB::C7;
       break;
        case 8:
-        leds[pixelNum-1] = CRGB::C8;
+        leds[row1] = CRGB::C8;
       break;
    }
 		FastLED.setBrightness(63);
@@ -110,29 +125,37 @@ void setLEDcolor(int pixelNum, int pot)
 	{
 		 switch (pixelNum)
    {
-      case 1:
-        leds[pixelNum-1] = CRGB::C1;
+        case 1:
+        leds[row1] = CRGB::C1;
+		leds[row2] = CRGB::C1;
       break;      
       case 2:
-        leds[pixelNum-1] = CRGB::C2;
+        leds[row1] = CRGB::C2;
+		leds[row2] = CRGB::C2;
       break; 
        case 3:
-        leds[pixelNum-1] = CRGB::C3;
+        leds[row1] = CRGB::C3;
+		leds[row2] = CRGB::C3;
       break;
        case 4:
-        leds[pixelNum-1] = CRGB::C4;
+        leds[row1] = CRGB::C4;
+		leds[row2] = CRGB::C4;
       break;
        case 5:
-        leds[pixelNum-1] = CRGB::C5;
+        leds[row1] = CRGB::C5;
+		leds[row2] = CRGB::C5;
       break;
        case 6:
-        leds[pixelNum-1] = CRGB::C6;
+        leds[row1] = CRGB::C6;
+		leds[row2] = CRGB::C6;
       break;
       case 7:
-        leds[pixelNum-1] = CRGB::C7;
+        leds[row1] = CRGB::C7;
+		leds[row2] = CRGB::C7;
       break;
        case 8:
-        leds[pixelNum-1] = CRGB::C8;
+        leds[row1] = CRGB::C8;
+		leds[row2] = CRGB::C8;
       break;
    }
 		FastLED.setBrightness(100);
@@ -144,29 +167,45 @@ void setLEDcolor(int pixelNum, int pot)
 	{
 		 switch (pixelNum)
    {
-      case 1:
-        leds[pixelNum-1] = CRGB::C1;
+        case 1:
+        leds[row1] = CRGB::C1;
+		leds[row2] = CRGB::C1;
+		leds[row3] = CRGB::C1;
       break;      
       case 2:
-        leds[pixelNum-1] = CRGB::C2;
+        leds[row1] = CRGB::C2;
+		leds[row2] = CRGB::C2;
+		leds[row3] = CRGB::C2;
       break; 
        case 3:
-        leds[pixelNum-1] = CRGB::C3;
+        leds[row1] = CRGB::C3;
+		leds[row2] = CRGB::C3;
+		leds[row3] = CRGB::C3;
       break;
        case 4:
-        leds[pixelNum-1] = CRGB::C4;
+        leds[row1] = CRGB::C4;
+		leds[row2] = CRGB::C4;
+		leds[row3] = CRGB::C4;
       break;
        case 5:
-        leds[pixelNum-1] = CRGB::C5;
+        leds[row1] = CRGB::C5;
+		leds[row2] = CRGB::C5;
+		leds[row3] = CRGB::C5;
       break;
        case 6:
-        leds[pixelNum-1] = CRGB::C6;
+        leds[row1] = CRGB::C6;
+		leds[row2] = CRGB::C6;
+		leds[row3] = CRGB::C6;
       break;
       case 7:
-        leds[pixelNum-1] = CRGB::C7;
+        leds[row1] = CRGB::C7;
+		leds[row2] = CRGB::C7;
+		leds[row3] = CRGB::C7;
       break;
        case 8:
-        leds[pixelNum-1] = CRGB::C8;
+        leds[row1] = CRGB::C8;
+		leds[row2] = CRGB::C8;
+		leds[row3] = CRGB::C8;
       break;
    }
 		FastLED.setBrightness(170);
@@ -179,28 +218,52 @@ void setLEDcolor(int pixelNum, int pot)
 		 switch (pixelNum)
    {
       case 1:
-        leds[pixelNum-1] = CRGB::C1;
+        leds[row1] = CRGB::C1;
+		leds[row2] = CRGB::C1;
+		leds[row3] = CRGB::C1;
+		leds[row4] = CRGB::C1;
       break;      
       case 2:
-        leds[pixelNum-1] = CRGB::C2;
+        leds[row1] = CRGB::C2;
+		leds[row2] = CRGB::C2;
+		leds[row3] = CRGB::C2;
+		leds[row4] = CRGB::C2;
       break; 
        case 3:
-        leds[pixelNum-1] = CRGB::C3;
+        leds[row1] = CRGB::C3;
+		leds[row2] = CRGB::C3;
+		leds[row3] = CRGB::C3;
+		leds[row4] = CRGB::C3;
       break;
        case 4:
-        leds[pixelNum-1] = CRGB::C4;
+        leds[row1] = CRGB::C4;
+		leds[row2] = CRGB::C4;
+		leds[row3] = CRGB::C4;
+		leds[row4] = CRGB::C4;
       break;
        case 5:
-        leds[pixelNum-1] = CRGB::C5;
+        leds[row1] = CRGB::C5;
+		leds[row2] = CRGB::C5;
+		leds[row3] = CRGB::C5;
+		leds[row4] = CRGB::C5;
       break;
        case 6:
-        leds[pixelNum-1] = CRGB::C6;
+        leds[row1] = CRGB::C6;
+		leds[row2] = CRGB::C6;
+		leds[row3] = CRGB::C6;
+		leds[row4] = CRGB::C6;
       break;
       case 7:
-        leds[pixelNum-1] = CRGB::C7;
+        leds[row1] = CRGB::C7;
+		leds[row2] = CRGB::C7;
+		leds[row3] = CRGB::C7;
+		leds[row4] = CRGB::C7;
       break;
        case 8:
-        leds[pixelNum-1] = CRGB::C8;
+        leds[row1] = CRGB::C8;
+		leds[row2] = CRGB::C8;
+		leds[row3] = CRGB::C8;
+		leds[row4] = CRGB::C8;
       break;
    }
 		FastLED.setBrightness(255);
