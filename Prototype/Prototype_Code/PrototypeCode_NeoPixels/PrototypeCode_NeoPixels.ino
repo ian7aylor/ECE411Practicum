@@ -4,7 +4,7 @@
 
 // Pin Assignments
 #define NumLEDS 64
-#define DataPin 7
+#define DataPin 12
 
 // Pots
 #define pot1Pin 0
@@ -52,9 +52,9 @@ void loop()
 
     // Monitor the value of all potentiometers
     char printer[99];	
-    //sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d  Value8: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7, pot8);
-    //Serial.println(printer);
-
+    sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d  Value8: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7, pot8);
+    Serial.println(printer);
+//Serial.println(pot8);
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
      */
@@ -66,14 +66,13 @@ void loop()
     setLEDcolor(4, pot4);
     setLEDcolor(5, pot5);
     setLEDcolor(6, pot6);
-    //setLEDcolor(7, pot7);
-    //setLEDcolor(8, pot8);
+    setLEDcolor(7, pot7);
+    setLEDcolor(8, pot8);
 
     // Turns all LEDS Off if there is "no signal"
     for (int j = 0; j < NumLEDS; j++)
         leds[j] = CRGB::C0;
     FastLED.show();
-
 }
 
 void setLEDcolor(int pixelNum, int pot)
@@ -88,6 +87,7 @@ void setLEDcolor(int pixelNum, int pot)
     int row7 = pixelNum-1 + (8 * 6);
     int row8 = pixelNum-1 + (8 * 7);
 
+  FastLED.setBrightness(63);
     // Volume stage 1
     if (pot >15 && pot < 255)
     {
@@ -118,7 +118,7 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row1] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
+      
         FastLED.show();
     }
 
@@ -160,8 +160,7 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row2] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
-        FastLED.show();
+       FastLED.show();
     }
 
     // Volume stage 3
@@ -210,7 +209,6 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row3] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
         FastLED.show();
     }
 
@@ -268,7 +266,6 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row4] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
         FastLED.show();
     }
 
@@ -335,7 +332,6 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row5] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
         FastLED.show();
     }
 
@@ -410,7 +406,6 @@ else if (pot > 762 && pot < 889)
                 leds[row6] = CRGB::C8;
                 break;
     }
-    FastLED.setBrightness(63);
     FastLED.show();
   }
     // Volume stage 7
@@ -491,7 +486,6 @@ else if (pot > 762 && pot < 889)
                 leds[row7] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
         FastLED.show();
     }
 
@@ -581,7 +575,6 @@ else if (pot > 762 && pot < 889)
                 leds[row8] = CRGB::C8;
                 break;
         }
-        FastLED.setBrightness(63);
         FastLED.show();
     }
 }
