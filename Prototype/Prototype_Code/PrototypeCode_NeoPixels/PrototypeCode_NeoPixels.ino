@@ -272,3 +272,14 @@ void setLEDcolor(int pixelNum, int pot)
         FastLED.show();
     }
 }
+
+// Likely to delete cuz its buggin
+void rowMultiplier(int multi)
+{
+    for (int i = 0; i < multi; i++)
+    {
+        String R = "row";
+        R.concat(i);
+        leds[R] = CRGB::C1;
+    }
+}
