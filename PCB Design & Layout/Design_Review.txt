@@ -1,0 +1,40 @@
+Design Review Notes - Team #2 (Nick Long, Marcus Chalona, Ali Saad, Ian Taylor)
+Reviewer: Professor Greenberg 
+
+- Don't know what the schematic is of. Need to better label all parts of the schematic. (fixed)
+- Needs to have a "useful" name (fixed)
+- 10000 ft view, what does the device do? Should not be a mystery. (fixed)
+Solution: Added a title that clearly describes the product. Clearly labeled all major pieces of the schematic.
+
+- Symbols were disliked. In particular the Op-Amp symbol was not liked. (fixed)
+Solution: The filter schematic was replaced by an IC. We are no longer building filters from scratch.
+
+Different ground symbols were on the filter circuit. (fixed)
+Solution: This is no longer an issue. All ground symbols are the same now.
+
+- LM324 - Put inputs to ground if not used
+- Ground VCC on LM324 (fixed)
+- Put a decoupling capacitor on the op amp. (fixed)
+Solution: We are no longer using the LM324 op-amp.
+
+- Pin Headers need to be labeled. (fixed)
+Solution: All pin headers are now labeled.
+
+- Connections to LED Strips/Array (fixed)
+Solution: There are now 3 pins for the 8x8 LED array. They connect to the D7 data input, ground, and +5V.
+
+ - 1 Decoupling cap per VCC (fixed)
+ Solution: All VCCs now have an assoicated decoupling cap. 
+ 
+ - No stitching ground plane (fixed)
+ Solution: Ground planes are now stitched together. There is now one reference across all layers of the board.
+ 
+ - via to connect ground planes (fixed)
+ Solution: vias have been added.
+ 
+
+ - No reason to use 6 mil wires. (fixed)
+ - The wires need to be orthogonal to the pads. (Working on)
+Solution: Wire size has been increased to 10 mil, and wires are now orthogonal to pads with proper spacing.
+
+Board has now been finalized and sent out to LCSC for manufacturing.
