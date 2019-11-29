@@ -107,6 +107,11 @@ void getSample()
 
 }
 
+void nextFilter()
+{
+    // Will select the next filter on the filter chip
+}
+
 void setLEDcolor(int pixelNum, int pot)
 {
     // Set the values for the pixels for each row
