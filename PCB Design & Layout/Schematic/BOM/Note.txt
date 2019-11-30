@@ -1,0 +1,1 @@
+BOM needs to be update so that we can use this for board assembly on Monday
