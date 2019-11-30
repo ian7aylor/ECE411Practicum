@@ -89,9 +89,13 @@ void loop()
             case(7):
                 pot7 = getSample();
                 setLEDcolor(7, pot7);
+            /*
+            no 8th row like this. Need to think of another way to use it
+            
             case(8):
                 pot8 = getSample();
                 setLEDcolor(8, pot8);
+            */    
         }
 
                 // Turns all LEDS Off if there is "no signal"
@@ -104,9 +108,30 @@ void loop()
 void getSample()
 {
     // Will comunicate (notsure how) with the filter chip to get the value of each filter
-
+    /* Data comes in the following order
+        63 Hz
+        160 Hz
+        400 Hz
+        1.0 KHz
+        2.5 KHz
+        6.25 KHz
+        16 KHz
+        REPEATS
+        63 Hz
+        160 Hz
+        400 Hz
 }
 
+void strobeChip()
+{
+    // Will strobe the filter chip
+    /* 
+    Reset goes high for min of 100us (delay(0.1))
+    After a reset: Valid data and output settling time = 208us (delay(0.208))
+    Output Settling Time is 36us min (delay(0.036))
+    Strobe religiously every 72us (delay(0.072))
+    */ 
+}
 void nextFilter()
 {
     // Will select the next filter on the filter chip
