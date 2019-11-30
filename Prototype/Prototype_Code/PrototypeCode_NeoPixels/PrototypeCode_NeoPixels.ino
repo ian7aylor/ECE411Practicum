@@ -16,6 +16,10 @@
 #define pot7Pin 6
 #define pot8Pin 7
 
+// Delay Value
+#define STRD 0.072
+#define VALD 0.036
+
 // Color Assignments
 #define C0 Black
 #define C1 Red
@@ -35,6 +39,15 @@ void setup()
 { 
     FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
     Serial.begin(57600);
+    digitalWrite(RESETPIN, OUTPUT); 
+    digitalWrite(STROBEPIN, OUTPUT);
+    digitalWrite(RESETPIN, HIGH); //reset = 1
+    digitalWrite(STROBEPIN, HIGH); //strobe = 1
+    int strobe = 1;
+    strobe = strobeChip(strobe); // strobe is LOW
+    strobe = strobeChip(strobe); // Strobe is HIGH
+
+
 }
 
 // This will loop for all of time
@@ -68,25 +81,25 @@ void loop()
         // Sets the number of LEDS for the volume level
         switch (i)
         {
-            case(1):
+            case(1): // 63 Hz
                 pot1 = getSample();
                 setLEDcolor(1, pot1);
-            case(2):
+            case(2): // 160 Hz
                 pot2 = getSample();
                 setLEDcolor(2, pot2);
-            case(3):
+            case(3): // 400 Hz
                 pot3 = getSample();
                 setLEDcolor(3, pot3);
-            case(4):
+            case(4): // 1 kHz
                 pot4 = getSample();
                 setLEDcolor(4, pot4);
-            case(5):
+            case(5): // 2.5 kHz
                 pot5 = getSample():
                 setLEDcolor(5, pot5);
-            case(6):
+            case(6): //6.25 kHz
                 pot6 = getSample();
                 setLEDcolor(6, pot6);
-            case(7):
+            case(7): // 16 kHz
                 pot7 = getSample();
                 setLEDcolor(7, pot7);
             /*
@@ -105,7 +118,7 @@ void loop()
     }
 }
 
-void getSample()
+int getSample()
 {
     // Will comunicate (notsure how) with the filter chip to get the value of each filter
     /* Data comes in the following order
@@ -120,17 +133,24 @@ void getSample()
         63 Hz
         160 Hz
         400 Hz
+    */
+
+    delay(VALD); // Delay for valid data    
+    return analogRead(A0);
 }
 
-void strobeChip()
+int strobeChip(int old)
 {
-    // Will strobe the filter chip
+    //Will strobe the filter chip
     /* 
     Reset goes high for min of 100us (delay(0.1))
     After a reset: Valid data and output settling time = 208us (delay(0.208))
     Output Settling Time is 36us min (delay(0.036))
     Strobe religiously every 72us (delay(0.072))
-    */ 
+    */
+    delay(STRD);
+    return ~old;
+
 }
 void nextFilter()
 {
