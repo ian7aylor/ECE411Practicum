@@ -3,8 +3,9 @@
 #include <FastLED.h>
 
 // Pin Assignments
-#define NumLEDS 64
 #define DataPin 12
+#define RESETPIN 1
+#define STROBEPIN 2
 
 // Pots
 #define pot1Pin 0
@@ -32,6 +33,7 @@
 #define C8 Orange // pick new color White
 
 // Array Assignments
+#define NumLEDS 64
 CRGB leds[NumLEDS];
 
 // Setup for the pixels
@@ -41,13 +43,13 @@ void setup()
     Serial.begin(57600);
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
+
     digitalWrite(RESETPIN, HIGH); //reset = 1
-    digitalWrite(STROBEPIN, HIGH); //strobe = 1
     int strobe = 1;
-    strobe = strobeChip(strobe); // strobe is LOW
-    strobe = strobeChip(strobe); // Strobe is HIGH
-
-
+    digitalWrite(STROBEPIN, strobe); //strobe = 1
+    strobe = strobeChip(strobe); // delay then strobe is LOW
+    strobe = strobeChip(strobe); // delay then Strobe is HIGH
+    digitalWrite(RESETPIN, LOW); // Reset = 0
 }
 
 // This will loop for all of time
@@ -76,41 +78,36 @@ void loop()
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
      */
-    for (i = 1; i < 9; i++)
+    for (int i = 1; i < 9; i++)
     {
+       int strobe = 1;
+       strobe = strobeChip(strobe); // delay then Strobe is HIGH
+        int pot = getSample();
         // Sets the number of LEDS for the volume level
         switch (i)
         {
             case(1): // 63 Hz
-                pot1 = getSample();
-                setLEDcolor(1, pot1);
+                setLEDcolor(1, pot);
             case(2): // 160 Hz
-                pot2 = getSample();
-                setLEDcolor(2, pot2);
+                setLEDcolor(2, pot);
             case(3): // 400 Hz
-                pot3 = getSample();
-                setLEDcolor(3, pot3);
+                setLEDcolor(3, pot);
             case(4): // 1 kHz
-                pot4 = getSample();
-                setLEDcolor(4, pot4);
+                setLEDcolor(4, pot);
             case(5): // 2.5 kHz
-                pot5 = getSample():
-                setLEDcolor(5, pot5);
+                setLEDcolor(5, pot);
             case(6): //6.25 kHz
-                pot6 = getSample();
-                setLEDcolor(6, pot6);
+                setLEDcolor(6, pot);
             case(7): // 16 kHz
-                pot7 = getSample();
-                setLEDcolor(7, pot7);
+                setLEDcolor(7, pot);
             /*
-            no 8th row like this. Need to think of another way to use it
+            // No 8th row like this. Need to think of another way to use it
             
             case(8):
                 pot8 = getSample();
                 setLEDcolor(8, pot8);
             */    
         }
-
                 // Turns all LEDS Off if there is "no signal"
                 for (int j = 0; j < NumLEDS; j++)
                     leds[j] = CRGB::C0;
@@ -134,14 +131,14 @@ int getSample()
         160 Hz
         400 Hz
     */
-
+    
     delay(VALD); // Delay for valid data    
     return analogRead(A0);
 }
 
 int strobeChip(int old)
 {
-    //Will strobe the filter chip
+    // Will strobe the filter chip
     /* 
     Reset goes high for min of 100us (delay(0.1))
     After a reset: Valid data and output settling time = 208us (delay(0.208))
@@ -150,7 +147,6 @@ int strobeChip(int old)
     */
     delay(STRD);
     return ~old;
-
 }
 void nextFilter()
 {
@@ -160,14 +156,14 @@ void nextFilter()
 void setLEDcolor(int pixelNum, int pot)
 {
     // Set the values for the pixels for each row
-    int row1 = pixelNum-1 + (8 * 0);
-    int row2 = pixelNum-1 + (8 * 1);
-    int row3 = pixelNum-1 + (8 * 2);
-    int row4 = pixelNum-1 + (8 * 3);
-    int row5 = pixelNum-1 + (8 * 4);
-    int row6 = pixelNum-1 + (8 * 5);
-    int row7 = pixelNum-1 + (8 * 6);
-    int row8 = pixelNum-1 + (8 * 7);
+    int row1 = pixelNum - 1 + (8 * 0);
+    int row2 = pixelNum - 1 + (8 * 1);
+    int row3 = pixelNum - 1 + (8 * 2);
+    int row4 = pixelNum - 1 + (8 * 3);
+    int row5 = pixelNum - 1 + (8 * 4);
+    int row6 = pixelNum - 1 + (8 * 5);
+    int row7 = pixelNum - 1 + (8 * 6);
+    int row8 = pixelNum - 1 + (8 * 7);
 
     FastLED.setBrightness(63);
     // Volume stage 1
@@ -200,7 +196,6 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row1] = CRGB::C8;
                 break;
         }
-
         FastLED.show();
     }
 
@@ -351,7 +346,6 @@ void setLEDcolor(int pixelNum, int pot)
         FastLED.show();
     }
 
-
     // Volume stage 5
     else if (pot > 635 && pot < 762)
     {
@@ -416,7 +410,6 @@ void setLEDcolor(int pixelNum, int pot)
         }
         FastLED.show();
     }
-
 
     // Volume stage 6
     else if (pot > 762 && pot < 889)
@@ -490,6 +483,7 @@ void setLEDcolor(int pixelNum, int pot)
         }
         FastLED.show();
     }
+    
     // Volume stage 7
     else if (pot > 889 && pot < 1000)
     {
