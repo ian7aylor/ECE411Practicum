@@ -49,9 +49,11 @@ void setup()
     analogWrite(IO11,127); // (MAYBE?) Sets the clock signal to the IO11 Pin at 50% duty cycle
     */
 
+    // Sets the Reset and Strobe pins as ooutputs
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
 
+    // Sending the strobe and reset signals to init the filter
     digitalWrite(RESETPIN, HIGH); //reset = 1
     int strobe = 1;
     digitalWrite(STROBEPIN, strobe); //strobe = 1
