@@ -3,9 +3,10 @@
 #include <FastLED.h>
 
 // Pin Assignments
-#define DataPin 12
-#define RESETPIN 1
-#define STROBEPIN 2
+#define DataPin 7
+#define RESETPIN 5
+#define STROBEPIN 4
+#define CHIP A2
 
 // Pots
 #define pot1Pin 0
@@ -41,6 +42,7 @@ void setup()
 { 
     FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
     Serial.begin(57600);
+    analogReference(INTERNAL);
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
 
@@ -67,13 +69,10 @@ void loop()
     int pot6 = analogRead(pot6Pin);
     int pot7 = analogRead(pot7Pin);
     int pot8 = analogRead(pot8Pin);
+*/
 
-    // Monitor the value of all potentiometers
-    char printer[99];	
-    sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d  Value8: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7, pot8);
-    Serial.println(printer);
     //Serial.println(pot8);
-     */
+     
 
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
@@ -81,25 +80,38 @@ void loop()
     for (int i = 1; i < 9; i++)
     {
        int strobe = 1;
+      // Serial.println(strobe);
        strobe = strobeChip(strobe); // delay then Strobe is HIGH
-        int pot = getSample();
+       int pot1, pot2, pot3, pot4, pot5, pot6, pot7;
+    // Monitor the value of all potentiometers
+    char printer[99];  
+    sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7);
+    Serial.println(printer);
+            
         // Sets the number of LEDS for the volume level
         switch (i)
         {
             case(1): // 63 Hz
-                setLEDcolor(1, pot);
+                pot1 = getSample();
+                setLEDcolor(1, pot1);
             case(2): // 160 Hz
-                setLEDcolor(2, pot);
+                pot2 = getSample();
+                setLEDcolor(2, pot2);
             case(3): // 400 Hz
-                setLEDcolor(3, pot);
+                pot3 = getSample();
+                setLEDcolor(3, pot3);
             case(4): // 1 kHz
-                setLEDcolor(4, pot);
+                pot4 = getSample();
+                setLEDcolor(4, pot4);
             case(5): // 2.5 kHz
-                setLEDcolor(5, pot);
+                pot5 = getSample();
+                setLEDcolor(5, pot5);
             case(6): //6.25 kHz
-                setLEDcolor(6, pot);
+                pot6 = getSample();
+                setLEDcolor(6, pot6);
             case(7): // 16 kHz
-                setLEDcolor(7, pot);
+                pot7 = getSample();
+                setLEDcolor(7, pot7);
             /*
             // No 8th row like this. Need to think of another way to use it
             
@@ -108,10 +120,13 @@ void loop()
                 setLEDcolor(8, pot8);
             */    
         }
+        
                 // Turns all LEDS Off if there is "no signal"
                 for (int j = 0; j < NumLEDS; j++)
                     leds[j] = CRGB::C0;
                 FastLED.show();
+
+                
     }
 }
 
@@ -133,7 +148,7 @@ int getSample()
     */
     
     delay(VALD); // Delay for valid data    
-    return analogRead(A0);
+    return analogRead(CHIP);
 }
 
 int strobeChip(int old)
