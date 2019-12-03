@@ -42,7 +42,8 @@ void setup()
 { 
     FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
     Serial.begin(57600);
-    analogReference(INTERNAL);
+    analogReference(INTERNAL); // Sets the AREF to 2.5 for the reference for the filter chip
+    analogWrite(IO11,127); // (MAYBE?) Sets the clock signal to the IO11 Pin at 50% duty cycle
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
 
