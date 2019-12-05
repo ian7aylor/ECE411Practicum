@@ -5,8 +5,8 @@
 // Pin Assignments
 #define DataPin 7   // Pin that communicates to LED output strip 
 #define RESETPIN 5  // Pin for reset button
-#define STROBEPIN 4 // Pin connecting to strobe of the filter chip 
-#define CHIP A2     // Connect to the 7 BandPass filter chip 
+#define STROBEPIN 2 // Pin connecting to strobe of the filter chip 
+#define CHIP A0     // Connect to the 7 BandPass filter chip 
 
 // Pots
 #define pot1Pin 0
@@ -51,17 +51,24 @@ void setup()
     analogWrite(IO11,127); // (MAYBE?) Sets the clock signal to the IO11 Pin at 50% duty cycle
     */
 
-    // Sets the Reset and Strobe pins as ooutputs
+    // Sets the Datapin and Reset and Strobe pins as ooutputs
+    digitalWrite(DataPin, OUTPUT); 
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
 
+    // Sets the Chip pin as an input
+    analogWrite(CHIP, INPUT);
+
     // Sending the strobe and reset signals to initialize the filter
     digitalWrite(RESETPIN, HIGH); //reset = 1
-    int strobe = 1;
+    int strobe = HIGH;
     digitalWrite(STROBEPIN, strobe); //strobe = 1
-    strobe = strobeChip(strobe); // delay then strobe is LOW
-    strobe = strobeChip(strobe); // delay then Strobe is HIGH
+    strobe = strobeChip(strobe);
+    digitalWrite(STROBEPIN, strobe); // delay then strobe = 0
+    strobe = strobeChip(strobe);
+    digitalWrite(STROBEPIN, strobe); // delay then strobe = 1
     digitalWrite(RESETPIN, LOW); // Reset = 0
+    delay(STRD);
 }
 
 // This will loop for all of time
@@ -89,39 +96,55 @@ void loop()
      */
     for (int i = 1; i < 8; i++)
     {
-       int strobe = HIGH;
+       int strobe = LOW;
+       delay(VALD);
       // Serial.println(strobe);
-       strobe = strobeChip(strobe); // delay then Strobe is HIGH
+//       strobe = strobeChip(strobe); // delay then Strobe is HIGH
        int pot1, pot2, pot3, pot4, pot5, pot6, pot7;
     // Monitor the value of all potentiometers
-    char printer[99];  
+    /* 
+     char printer[99];  
     sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7);
     Serial.println(printer);
-            
+     */       
         // Sets the number of LEDS for the volume level
         switch (i)
         {
             case(1): // 63 Hz
                 pot1 = getSample();
                 setLEDcolor(1, pot1);
+                Serial.print("filter 1: ");
+                Serial.println(pot1);
             case(2): // 160 Hz
                 pot2 = getSample();
                 setLEDcolor(2, pot2);
+                Serial.print("filter 2: ");
+                Serial.println(pot2);
             case(3): // 400 Hz
                 pot3 = getSample();
                 setLEDcolor(3, pot3);
+                Serial.print("filter 3: ");
+                Serial.println(pot3);
             case(4): // 1 kHz
                 pot4 = getSample();
                 setLEDcolor(4, pot4);
+                Serial.print("filter 4: ");
+                Serial.println(pot4);
             case(5): // 2.5 kHz
                 pot5 = getSample();
                 setLEDcolor(5, pot5);
+                Serial.print("filter 5: ");
+                Serial.println(pot5);
             case(6): //6.25 kHz
                 pot6 = getSample();
                 setLEDcolor(6, pot6);
+                Serial.print("filter 6: ");
+                Serial.println(pot6);
             case(7): // 16 kHz
                 pot7 = getSample();
                 setLEDcolor(7, pot7);
+                Serial.print("filter 7: ");
+                Serial.println(pot7);
             /*
             // No 8th row like this. Need to think of another way to use it
             
@@ -135,6 +158,9 @@ void loop()
                 for (int j = 0; j < NumLEDS; j++)
                     leds[j] = CRGB::C0;
                 FastLED.show();
+                //delay(REMAIN);
+                strobe = HIGH;
+                delay(STRD);
                 
     }
 }
