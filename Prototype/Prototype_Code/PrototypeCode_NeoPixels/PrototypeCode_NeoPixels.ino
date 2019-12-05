@@ -21,7 +21,7 @@
 // Delay Value
 #define STRD 0.072 // Delay for strobe cycle
 #define VALD 0.036 // Delay for a valid data
-#define REMAIN 0.035 // Delay for the remaining time
+#define REMAIN 0.036 // Delay for the remaining time after valid data
 
 // Color Assignments
 #define C0 Black
