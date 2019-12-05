@@ -19,8 +19,9 @@
 #define pot8Pin 7
 
 // Delay Value
-#define STRD 0.072
-#define VALD 0.036
+#define STRD 0.072 // Delay for strobe cycle
+#define VALD 0.036 // Delay for a valid data
+#define REMAIN 0.035 // Delay for the remaining time
 
 // Color Assignments
 #define C0 Black
@@ -85,7 +86,7 @@ void loop()
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
      */
-    for (int i = 1; i < 9; i++)
+    for (int i = 1; i < 8; i++)
     {
        int strobe = 1;
       // Serial.println(strobe);
@@ -133,7 +134,6 @@ void loop()
                 for (int j = 0; j < NumLEDS; j++)
                     leds[j] = CRGB::C0;
                 FastLED.show();
-
                 
     }
 }
