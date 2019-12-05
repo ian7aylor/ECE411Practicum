@@ -3,10 +3,10 @@
 #include <FastLED.h>
 
 // Pin Assignments
-#define DataPin 7
-#define RESETPIN 5
-#define STROBEPIN 4
-#define CHIP A2
+#define DataPin 7   // Pin that communicates to LED output strip 
+#define RESETPIN 5  // Pin for reset button
+#define STROBEPIN 4 // Pin connecting to strobe of the filter chip 
+#define CHIP A2     // Connect to the 7 BandPass filter chip 
 
 // Pots
 #define pot1Pin 0
@@ -24,15 +24,15 @@
 #define REMAIN 0.036 // Delay for the remaining time after valid data
 
 // Color Assignments
-#define C0 Black
-#define C1 Red
-#define C2 Green
-#define C3 Blue
-#define C4 Yellow
-#define C5 Purple
-#define C6 White
-#define C7 Aqua
-#define C8 Orange // pick new color White
+#define C0 Black  // no input
+#define C1 Red    // 1st row of LEDs
+#define C2 Green  // 2nd row of LEDs
+#define C3 Blue   // 3rd row of LEDs
+#define C4 Yellow // 4th row of LEDs
+#define C5 Purple // 5th row of LEDs
+#define C6 White  // 6th row of LEDs
+#define C7 Aqua   // 7th row of LEDs
+#define C8 Orange // 8th row of LEDs
 
 // Array Assignments
 #define NumLEDS 64
@@ -41,8 +41,9 @@ CRGB leds[NumLEDS];
 // Setup for the pixels
 void setup() 
 { 
+    // Brought in from the FastLED Library
     FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
-    Serial.begin(57600);
+    Serial.begin(57600); // start a serial monitor
     
     /*
     Not needed per Marks comments. No reference ground is needed
@@ -54,7 +55,7 @@ void setup()
     digitalWrite(RESETPIN, OUTPUT); 
     digitalWrite(STROBEPIN, OUTPUT);
 
-    // Sending the strobe and reset signals to init the filter
+    // Sending the strobe and reset signals to initialize the filter
     digitalWrite(RESETPIN, HIGH); //reset = 1
     int strobe = 1;
     digitalWrite(STROBEPIN, strobe); //strobe = 1
@@ -88,7 +89,7 @@ void loop()
      */
     for (int i = 1; i < 8; i++)
     {
-       int strobe = 1;
+       int strobe = HIGH;
       // Serial.println(strobe);
        strobe = strobeChip(strobe); // delay then Strobe is HIGH
        int pot1, pot2, pot3, pot4, pot5, pot6, pot7;
@@ -169,7 +170,7 @@ int strobeChip(int old)
     Strobe religiously every 72us (delay(0.072))
     */
     delay(STRD);
-    return ~old;
+    return !old;
 }
 void nextFilter()
 {
