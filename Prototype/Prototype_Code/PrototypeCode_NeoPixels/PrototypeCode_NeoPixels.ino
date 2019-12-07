@@ -4,8 +4,8 @@
 
 // Pin Assignments
 #define DataPin 7   // Pin that communicates to LED output strip 
-#define RESETPIN 5  // Pin for reset button
-#define STROBEPIN 2 // Pin connecting to strobe of the filter chip 
+#define RESETPIN 3  // Pin for reset button
+#define STROBEPIN 4 // Pin connecting to strobe of the filter chip 
 #define CHIP A0     // Connect to the 7 BandPass filter chip 
 
 // Pots
@@ -19,7 +19,7 @@
 #define pot8Pin 7
 
 // Delay Value
-#define STRD 0.072 // Delay for strobe cycle
+#define STRD 3000//0.072  // Delay for strobe cycle
 #define VALD 0.036 // Delay for a valid data
 #define REMAIN 0.036 // Delay for the remaining time after valid data
 
@@ -61,42 +61,25 @@ void setup()
 
     // Sending the strobe and reset signals to initialize the filter
     digitalWrite(RESETPIN, HIGH); //reset = 1
-    int strobe = HIGH;
-    digitalWrite(STROBEPIN, strobe); //strobe = 1
-    strobe = strobeChip(strobe);
-    digitalWrite(STROBEPIN, strobe); // delay then strobe = 0
-    strobe = strobeChip(strobe);
-    digitalWrite(STROBEPIN, strobe); // delay then strobe = 1
-    digitalWrite(RESETPIN, LOW); // Reset = 0
+    digitalWrite(STROBEPIN, HIGH); //strobe = 1
+    delay(STRD);
+    digitalWrite(STROBEPIN, LOW); // delay then strobe = 0
+    delay(STRD);
+    digitalWrite(RESETPIN, LOW); //reset = 0
+    digitalWrite(STROBEPIN, HIGH); //reset = 1
     delay(STRD);
 }
 
 // This will loop for all of time
 void loop() 
 {
-    /*
-       THIS IS OLD CODE
-
-    // Reading in from the 8 band pass filters
-    int pot1 = analogRead(pot1Pin);
-    int pot2 = analogRead(pot2Pin);
-    int pot3 = analogRead(pot3Pin);
-    int pot4 = analogRead(pot4Pin);
-    int pot5 = analogRead(pot5Pin);
-    int pot6 = analogRead(pot6Pin);
-    int pot7 = analogRead(pot7Pin);
-    int pot8 = analogRead(pot8Pin);
-*/
-
-    //Serial.println(pot8);
-     
-
+    digitalWrite(RESETPIN, LOW); //reset = 0
     /*   Serial.print(" Value 1: ");Serial.print(pot1);Serial.print(" Value 2: ");Serial.print(pot2);Serial.print(" Value 3: ");Serial.print(pot3);Serial.print(" Value 4: ");Serial.print(pot4);
          Serial.print(" Value 5: ");Serial.print(pot5);Serial.print(" Value 6: ");Serial.print(pot6);Serial.print(" Value 7: ");Serial.print(pot7);Serial.print(" Value 8: ");Serial.println(pot8);
      */
     for (int i = 1; i < 8; i++)
     {
-       int strobe = LOW;
+       digitalWrite(STROBEPIN, LOW); // Strobe = 0
        delay(VALD);
       // Serial.println(strobe);
 //       strobe = strobeChip(strobe); // delay then Strobe is HIGH
@@ -145,23 +128,15 @@ void loop()
                 setLEDcolor(7, pot7);
                 Serial.print("filter 7: ");
                 Serial.println(pot7);
-            /*
-            // No 8th row like this. Need to think of another way to use it
-            
-            case(8):
-                pot8 = getSample();
-                setLEDcolor(8, pot8);
-            */    
         }
-        
                 // Turns all LEDS Off if there is "no signal"
                 for (int j = 0; j < NumLEDS; j++)
                     leds[j] = CRGB::C0;
                 FastLED.show();
-                //delay(REMAIN);
-                strobe = HIGH;
-                delay(STRD);
-                
+                delay(REMAIN);
+                delay(STRD); //delete later
+                digitalWrite(STROBEPIN, HIGH); //reset = 1
+                delay(STRD);             
     }
 }
 
@@ -182,7 +157,7 @@ int getSample()
         400 Hz
     */
     
-    delay(VALD); // Delay for valid data    
+    //delay(VALD); // Delay for valid data    
     return analogRead(CHIP);
 }
 
