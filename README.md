@@ -11,7 +11,7 @@ to do is:
 3. Enjoy the visual LED display
 
 ## Useful Links
-### Link: [Final Version of Board(link needed)]()
+### Link: [Final Version of Board](https://github.com/ian7aylor/ECE411Practicum/tree/master/PCB%20Design%20%26%20Layout/VER1.3)
 ### Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/tree/master/BOM)
 ### Link: [Source Code](https://github.com/ian7aylor/ECE411Practicum/tree/master/Source/PrototypeCode_NeoPixels)
-### Link: [Test Plan(link needed)]()
+### Link: [Test Plan](https://github.com/ian7aylor/ECE411Practicum/blob/master/Testing/Homework%207%20-%20Test%20Plan.pdf)
