@@ -10,7 +10,8 @@ to do is:
 2. Play their favorite soundtrack.
 3. Enjoy the visual LED display
 
-### Link: [Final Version of Board]()
+## Useful Links
+### Link: [Final Version of Board(link needed)]()
 ### Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/tree/master/BOM)
 ### Link: [Source Code](https://github.com/ian7aylor/ECE411Practicum/tree/master/Source/PrototypeCode_NeoPixels)
-### Link: [Test Plan]()
+### Link: [Test Plan(link needed)]()
