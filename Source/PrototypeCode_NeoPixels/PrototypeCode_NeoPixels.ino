@@ -8,18 +8,8 @@
 #define RESETPIN 3   // Pin for reset button
 #define CHIP A0     // Connect to the 7 BandPass filter chip 
 
-// Pots
-#define pot1Pin 0
-#define pot2Pin 1
-#define pot3Pin 2
-#define pot4Pin 3
-#define pot5Pin 4
-#define pot6Pin 5
-#define pot7Pin 6
-#define pot8Pin 7
-
 // Delay Value
-#define STRD .3//0.072  // Delay for strobe cycle
+#define STRD 0.072  // Delay for strobe cycle
 #define VALD 0.036 // Delay for a valid data
 #define REMAIN 0.036 // Delay for the remaining time after valid data
 
@@ -35,6 +25,7 @@
 #define C8 Orange // 8th row of LEDs
 
 // Array Assignments
+#define LEDBrightness 63 // 1/4th the brightness of the LEDs
 #define NumLEDS 64
 CRGB leds[NumLEDS];
 
@@ -45,12 +36,6 @@ void setup()
     FastLED.addLeds<NEOPIXEL, DataPin>(leds, NumLEDS);
     Serial.begin(57600); // start a serial monitor
     
-    /*
-    Not needed per Marks comments. No reference ground is needed
-    analogReference(INTERNAL); // Sets the AREF to 2.5 for the reference for the filter chip
-    analogWrite(IO11,127); // (MAYBE?) Sets the clock signal to the IO11 Pin at 50% duty cycle
-    */
-
     // Sets the Datapin and Reset and Strobe pins as ooutputs
     digitalWrite(DataPin, OUTPUT); 
     digitalWrite(RESETPIN, OUTPUT); 
@@ -80,16 +65,15 @@ void loop()
     for (int i = 1; i < 8; i++)
     {
        digitalWrite(STROBEPIN, LOW); // Strobe = 0
-       delay(VALD);
-      // Serial.println(strobe);
-//       strobe = strobeChip(strobe); // delay then Strobe is HIGH
        int pot1, pot2, pot3, pot4, pot5, pot6, pot7;
+
     // Monitor the value of all potentiometers
     /* 
      char printer[99];  
     sprintf(printer, "Value 1: %d  Value2: %d  Value3: %d  Value4: %d  Value5: %d  Value6: %d  Value7: %d", pot1, pot2, pot3, pot4, pot5, pot6, pot7);
     Serial.println(printer);
      */       
+
         // Sets the number of LEDS for the volume level
         switch (i)
         {
@@ -156,7 +140,7 @@ int getSample()
         400 Hz
     */
     
-    //delay(VALD); // Delay for valid data    
+    delay(VALD); // Delay for valid data    
     return analogRead(CHIP);
 }
 
@@ -169,12 +153,9 @@ int strobeChip(int old)
     Output Settling Time is 36us min (delay(0.036))
     Strobe religiously every 72us (delay(0.072))
     */
+
     delay(STRD);
     return !old;
-}
-void nextFilter()
-{
-    // Will select the next filter on the filter chip
 }
 
 void setLEDcolor(int pixelNum, int pot)
@@ -189,7 +170,10 @@ void setLEDcolor(int pixelNum, int pot)
     int row7 = pixelNum - 1 + (8 * 6);
     int row8 = pixelNum - 1 + (8 * 7);
 
-    FastLED.setBrightness(63);
+    // Sets the LED brightness
+    FastLED.setBrightness(LEDBrightness);
+    
+    /* The statements below select which LEDS to light */
     // Volume stage 1
     if (pot >15 && pot < 255)
     {
@@ -675,18 +659,7 @@ void setLEDcolor(int pixelNum, int pot)
                 leds[row8] = CRGB::C8;
                 break;
         }
+        // Actually pushes to the LEDs
         FastLED.show();
-    }
-}
-
-
-// Likely to delete cuz its buggin
-void rowMultiplier(int multi)
-{
-    for (int i = 0; i < multi; i++)
-    {
-        String R = "row";
-        R.concat(i);
-        //        leds[R] = CRGB::C1;
     }
 }
