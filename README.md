@@ -1,4 +1,4 @@
-### EE411Practicum: Audio Spectrum Vizualizer, Team #2
+# EE411Practicum: Audio Spectrum Vizualizer, Team #2
 ## Project Overview
 Our device will listen to the surounding environment through a microphone, and 
 produce a visual display through an array of colorful LED lights. The LEDs are divided
@@ -10,7 +10,7 @@ to do is:
 2. Play their favorite soundtrack.
 3. Enjoy the visual LED display
 
-# Link: [Final Version of Board]()
-# Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/tree/master/BOM)
-# Link: [Source Code](https://github.com/ian7aylor/ECE411Practicum/tree/master/Source/PrototypeCode_NeoPixels)
-# Link: [Test Plan]()
+### Link: [Final Version of Board]()
+### Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/tree/master/BOM)
+### Link: [Source Code](https://github.com/ian7aylor/ECE411Practicum/tree/master/Source/PrototypeCode_NeoPixels)
+### Link: [Test Plan]()
