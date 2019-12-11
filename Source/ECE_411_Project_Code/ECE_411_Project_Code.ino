@@ -5,17 +5,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////// Adafruit_NeoMatrix example for single NeoPixel Shield /////////////////////////
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-// Contains code (c) Adafruit, license BSD
-//#include <Adafruit_GFX.h>
-//#include <Adafruit_NeoMatrix.h>
-//#include <Adafruit_NeoPixel.h>
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
 ////////////////////////////////// Included Libraries /////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,11 +24,10 @@
 #define DisplayPin 6      // Output data pin for 8x8 NeoPixel Matrix display 
 #define LEDBrightness 63  // Controls Brightness of LED, LEDs set to 1/4th the brightness 
 #define NumLEDS 64        // Number of LEDs 8 x 8 = 64
-CRGB leds[NumLEDS];       // CRGB sets color for LEDs
+CRGB leds[NumLEDS];       // Sets Arrays of LEDs
 
-/*
-  Analog Input
-*/
+
+//  Analog Input
 // Color Assignments for LEDs
 #define C0 Black          // no input
 #define C1 Red            // 1st column of LEDs
@@ -688,5 +676,3 @@ void DisplayLED(int Col, int PotValue)
     FastLED.show();    
   }
 }
-
-
