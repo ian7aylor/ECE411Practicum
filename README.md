@@ -12,6 +12,6 @@ to do is:
 
 ## Useful Links
 ### Link: [Final Version of Board](https://github.com/ian7aylor/ECE411Practicum/tree/master/PCB%20Design%20%26%20Layout/VER1.3)
-### Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/tree/master/BOM)
+### Link: [Bill of Materials](https://github.com/ian7aylor/ECE411Practicum/blob/master/BOM/BOM.xlsx)
 ### Link: [Source Code](https://github.com/ian7aylor/ECE411Practicum/tree/master/Source/PrototypeCode_NeoPixels)
 ### Link: [Test Plan](https://github.com/ian7aylor/ECE411Practicum/blob/master/Testing/Homework%207%20-%20Test%20Plan.pdf)
