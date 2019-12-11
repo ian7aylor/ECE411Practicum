@@ -88,7 +88,7 @@ void setup() {
 
 // Used for diagonositics, let's us see output  
   Serial.begin(115200);                               // Serial Monitor and Baud Rate 
-  reset();                                            // Reset the equlizer chip for mux operation, Reset = 1
+  reset();                                            // Reset the equlizer chip for mux operation
   digitalWrite(strobePin, HIGH);                      // Set the strobe pin high to initial state, Strobe = 1 
   
 // Sets the LED brightness
