@@ -1,4 +1,4 @@
-# ECE411Practicum: Audio Spectrum Vizualizer, Team #2
+# ECE411 Practicum: Audio Spectrum Vizualizer, Team #2
 ## Project Overview
 Our device will listen to the surounding environment through a microphone, and 
 produce a visual display through an array of colorful LED lights. The LEDs are divided
